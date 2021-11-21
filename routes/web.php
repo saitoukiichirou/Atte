@@ -27,6 +27,6 @@ require __DIR__.'/auth.php';
 Route::post('/punchin', [AtteController::class, 'punchIn']);
 Route::post('/punchout', [AtteController::class, 'punchOut']);
 
-Route::post('/restin', [AtteController::class, 'restIn']);
+Route::post('/restin', [AtteController::class, 'restIn'])->name('restin');
 Route::post('/restout', [AtteController::class, 'restOut']);
 
