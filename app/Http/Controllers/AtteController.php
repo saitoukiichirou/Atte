@@ -22,7 +22,7 @@ class AtteController extends Controller
 
 //        同日の打刻が既にあるか確認する。打刻が無ければ出勤の打刻をする findByUserOfToday
         if (!is_null(Attendance::findByUserOfDate($id, Carbon::yesterday(), ['end_time', null])->first())) {
-            return redirect('/')->with(['message' => 'まず昨日の退勤をしろ']);
+            return redirect('/')->with(['message' => 'まず昨日の退勤をしてください']);
         }
 
         if (!is_null(Attendance::findByUserOfDate($id, Carbon::today(), ['start_time', 'LIKE', '%'])->first())) {
