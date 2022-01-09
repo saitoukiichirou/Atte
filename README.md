@@ -1,64 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Atte
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+- シンプルな打刻勤怠管理アプリケーション
 
-## About Laravel
+# Features
+- シンプルで使いやすい打刻UI
+- 日毎・月毎(ユーザー別)表示が可能な勤怠履歴表示
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Requirement
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* MySQL v5.7.32
+* Laravel v8.78.1
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+# Usage
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- ユーザー登録
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  初回の方は /register にてユーザー登録をしてください。
 
-## Laravel Sponsors
+  登録に必要な情報は「メールアドレス」「登録者の名前」「8文字以上の任意のパスワード」です。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  登録ボタンをクリックすると登録時のメールアドレス宛に確認メールが届きますので、メール本文内にある「登録を完了する」ボタンをクリックしアカウントが本登録されます。
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- ログイン
 
-## Contributing
+  /login にて登録時のメールアドレスと自身で設定した任意のパスワードでログインしてください。
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+- ホーム画面
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  出退勤、休憩の記録をする画面。「勤務開始」「勤務終了」「休憩開始」「休憩終了」の4つのボタンがあります。
 
-## Security Vulnerabilities
+  「休憩開始」「休憩終了」ボタンは「勤務開始」ボタンを押下後に表示されます。「勤務終了」ボタン押下後は再び非表示になります。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+  休憩は1日に何度も取得可能です。但し、「休憩終了」ボタン押下後でないと「勤務終了」ボタンは押せないようになっています。
 
-## License
+  「勤務開始」「勤務終了」は1日に1度しか押せません。勤務開始状態で日付が変わった時は、勤務開始日の23時59分59秒が退勤時刻に、翌00時00分00秒が勤務開始時刻として「勤務終了」ボタンを押下時に記録されます。
+
+
+- 日付一覧画面
+
+  アクセスした当日の勤怠データがあるユーザ全員の情報が表示されます。
+
+  年月日表示の左右にある「＜」「＞」ボタンで日戻り・送りができます。
+  
+
+- ユーザー一覧画面
+
+  登録ユーザー(仮登録状態含む)の名前・登録日時・登録メールアドレスが一覧で確認できます。
+
+  名前をクリックすることでユーザー個別の月毎勤怠情報画面(次項参照)へジャンプできます。
+
+  メールアドレスをクリックすることで既定のメーラーよりメールを送ることができます。
+
+
+- 月毎勤怠情報画面
+
+  ユーザー一覧画面(前項)のユーザーの名前をクリックすると、そのユーザーの当月の勤怠情報が一覧で表示されます。
+
+  年月表示の左右にある「＜」「＞」ボタンで月戻り・送りができます。
+
+
+- パスワード再設定画面
+
+  /forgot-password にてパスワード失念時の再設定ができます。
+
+  登録時のメールアドレスを入力しボタンを押すとパスワードリセットメールが届きます。
+
+  パスワードリセットボタンをクリックすると入力したメールアドレス宛に再設定用のメールが届きますので、メール本文内にある「パスワード再設定」ボタンをクリックし再設定画面へジャンプします。
+
+  入力フォームに「登録時のメールアドレス」と「再設定用のパスワード」を入力しボタンを押すとパスワードの更新が完了します。
+
+# Note
+
+動作確認ブラウザーは以下の通りです
+* PC：Chrome/Firefox/Safari 最新バージョン
+* SP：iOS/AndroidOS　chrome/Safari 最新バージョン
+
+# Author
+
+* 作成者 斉藤騎一郎
+* 所属　coachtech受講生
+* E-mail　[kiichi0213@gmail.com](mailto:kiichi0213@gmail.com)
+
+# License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -20,5 +20,8 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+        <footer class="bg-white inset-x-0 bottom-0 -mt-6 text-center">
+            Atte, inc.
+        </footer>
     </body>
 </html>

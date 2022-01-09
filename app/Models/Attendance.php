@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,9 +10,7 @@ class Attendance extends Model
 {
     use HasFactory;
 
-//    protected $guarded = ['id'];
-    protected $fillable = ['user_id','date','start_time','end_time',];//'id',
-
+    protected $fillable = ['user_id', 'date', 'start_time', 'end_time'];
 
     public static $rules = array(
         'id' => 'required',
@@ -22,7 +19,6 @@ class Attendance extends Model
         'end_time' => 'time'
     );
 
-
     public function user()
     {
         $this->belongsTo(User::class);
@@ -30,10 +26,10 @@ class Attendance extends Model
 
     public function rest()
     {
-        return $this->hasMany(rest::class);
+        return $this->hasMany(Rest::class);
     }
 
-    public function scopeFindByUserOfDate($query, $id, $date, $time)//scope名変更済み$start_time, $end_time
+    public function scopeFindByUserIdAndDate($query, $id, $date, $time)
     {
         $query->where([
             ['user_id', $id],
@@ -41,22 +37,4 @@ class Attendance extends Model
             $time
         ]);
     }
-
-
-    public function scopeWhereUserYesterday($query)
-    {
-        $query->where([
-            ['user_id', Auth::user()->id],
-            ['date', Carbon::yesterday()],
-            ['end_time', null]
-        ]);
-    }
-    public function scopeWhereTodayAtte($query)//未完成
-    {
-        $query->where([
-            ['user_id', Auth::user()->id],
-            ['date', Carbon::today()]
-        ]);
-    }
-
 }

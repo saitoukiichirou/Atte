@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AtteController;
+use App\Http\Controllers\DateController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,19 +15,28 @@ use App\Http\Controllers\AtteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//ログインが必要なページ, verify後にアクセス可能
+Route::middleware(['verified'])->group(function (){
+    Route::get('/dashboard', [AtteController::class, 'index']);
+    Route::get('/', [AtteController::class, 'index'])->name('dashboard');
+
+    Route::post('/punchin', [AtteController::class, 'punchIn']);
+    Route::post('/punchout', [AtteController::class, 'punchOut']);
+
+    Route::post('/restin', [AtteController::class, 'restIn']);
+    Route::post('/restout', [AtteController::class, 'restOut']);
+
+    Route::get('/attendance/{date?}', [DateController::class, 'index']);
+    Route::get('/users', [DateController::class, 'usersList']);
+    Route::get('/users/{id?}/{month?}', [DateController::class, 'userMonthAtte']);
 });
 
-Route::get('/', function () {
+//ログインが不要なページ
+Route::get('/login', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+});
+Route::get('/dashboard', function () {
+    return redirect('/');
+})->middleware(['verified']);
 
 require __DIR__.'/auth.php';
-
-Route::post('/punchin', [AtteController::class, 'punchIn']);
-Route::post('/punchout', [AtteController::class, 'punchOut']);
-
-Route::post('/restin', [AtteController::class, 'restIn'])->name('restin');
-Route::post('/restout', [AtteController::class, 'restOut']);
-

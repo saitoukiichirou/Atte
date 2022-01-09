@@ -1,58 +1,49 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+        <h2 class="text-center font-semibold text-lg text-gray-800 pt-8 pb-5 leading-tight">ログイン</h2>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <x-auth-session-status class="mb-4" :status="session('status')"/>
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
         <form method="POST" action="{{ route('login') }}">
-            @csrf
+        @csrf
 
-            <!-- Email Address -->
+        <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('メールアドレス')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full bg-gray-100 border-solid border-2 border-gray-600 text-xs leading-8 pl-3" type="email" name="email" placeholder="メールアドレス" :value="old('email')" required autofocus/>
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('パスワード')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+        <!-- Password -->
+            <div class="mt-5">
+                <x-input id="password" class="block mt-1 w-full bg-gray-100 border-solid border-2 border-gray-600 text-xs leading-8 pl-3"
+                         type="password"
+                         name="password"
+                         placeholder="パスワード"
+                         required autocomplete="current-password"/>
             </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                        {{ __('会員登録') }}
-                    </a>
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
+            <div class="flex items-center mt-5">
+                <x-button class="w-full flex justify-center bg-blue-700 hover:bg-blue-500">
                     {{ __('ログイン') }}
                 </x-button>
+            </div>
+            <div class="mt-5 flex flex-col">
+                @if (Route::has('password.request'))
+                    <p class="text-xs text-center">アカウントをお持ちでない方はこちらから</p>
+                    <a class="text-xs text-center text-blue-700 hover:text-blue-500" href="{{ route('register') }}">
+                        {{ __('会員登録') }}
+                    </a>
+
+        <!-- Forgot your password?  -->
+                    <p class="text-xs text-center mt-5">パスワードを忘れた方はこちらから</p>
+                    <a class="text-xs text-center text-blue-700 hover:text-blue-500" href="{{ route('password.request') }}">
+                        {{ __('パスワード再発行') }}
+                    </a>
+                @endif
             </div>
         </form>
     </x-auth-card>
