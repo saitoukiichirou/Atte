@@ -41,8 +41,6 @@ class AtteController extends Controller
             //パターン4：休憩終了が押せる
             $rest_status = 22;
         }
-//        dd($attendance_status.'and'. $rest_status);
-//echo ;
         return view('dashboard', compact('attendance_status', 'rest_status'));
     }
 
