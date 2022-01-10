@@ -33,14 +33,14 @@
             @foreach ($attendances_day as $attendance)
                 <tr class="flex justify-center border-t border-gray-400">
                     <td class="max-w-48 w-32">
-                        <p class="py-5 px-0 sm:py-3 pl-3">{{$attendance->name}}</p>
+                        <p class="py-5 px-0 sm:py-3 pl-3">{{ $attendance->name }}</p>
                     </td>
                     <td class="w-20 sm:w-32">
-                        <p class="w-20 p-2 pl-1 sm:p-3">{{$attendance->start_time}}</p>
-                        <p class="w-20 p-2 pt-0 pl-1 sm:hidden">{{$attendance->end_time ?? '--:--:--'}}</p>
+                        <p class="w-20 p-2 pl-1 sm:p-3">{{ $attendance->start_time }}</p>
+                        <p class="w-20 p-2 pt-0 pl-1 sm:hidden">{{ $attendance->end_time ?? '--:--:--' }}</p>
                     </td>
                     <td class="hidden sm:flex w-32">
-                        <p class="p-0 sm:p-3">{{$attendance->end_time ?? '--:--:--'}}</p>
+                        <p class="p-0 sm:p-3">{{ $attendance->end_time ?? '--:--:--' }}</p>
                     </td>
                     <td class="w-20 sm:w-32">
                         <p class="w-20 p-2 pl-1 sm:p-3">{{gmdate('H:i:s', $attendance->rest_time)}}</p>

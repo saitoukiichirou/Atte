@@ -22,8 +22,8 @@ class Common
         $work_end = strtotime($punch_out);
         $working_time = $work_end - $work_start;
 
-            $attendance_id = $attendance_array->id;
-            $rests = Rest::where('attendance_id', $attendance_id)->get();
+        $attendance_id = $attendance_array->id;
+        $rests = Rest::where('attendance_id', $attendance_id)->get();
         $rest_total = 0;
 
         //休憩時間の合計を取得し配列に格納

@@ -23,7 +23,7 @@
                 <div class="flex-shrink-0 flex items-center mx-3">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <input style="background-color: rgb(255, 255, 255)" type="button" href="route('logout')"
+                        <input class="bg-white cursor-pointer" type="button" href="route('logout')"
                                onclick="event.preventDefault();
                             this.closest('form').submit();" value="ログアウト">
                     </form>
@@ -45,19 +45,19 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden">
         <div>
-            <div class="flex justify-end px-4 pt-4 pb-1 ">
+            <div class="flex justify-end p-4 pb-1 ">
                 <a href="{{ route('dashboard') }}">ホーム</a>
             </div>
-            <div class="flex justify-end px-4 px-4 pt-4 pb-1 ">
+            <div class="flex justify-end p-4 pb-1 ">
                 <a href="/attendance">日付一覧</a>
             </div>
-            <div class="flex justify-end px-4 px-4 pt-4 pb-1 ">
+            <div class="flex justify-end p-4 pb-1 ">
                 <a href="/users">ユーザー一覧</a>
             </div>
-            <div class="flex justify-end px-4 px-4 pt-4 pb-1 ">
+            <div class="flex justify-end p-4 ">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <input style="background-color: rgb(255, 255, 255)" type="button" href="route('logout')"
+                    <input class="bg-white cursor-pointer" type="button" href="route('logout')"
                            onclick="event.preventDefault();
                                 this.closest('form').submit();" value="ログアウト">
                 </form>

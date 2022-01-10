@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UsersTableSeeder extends Seeder
+class UsersTableSeeder  extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,37 +14,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         $param = [
-            'name' => 'テスト一郎',
-            'email' => 'ichiro@test.com',
-            'password' => '00000000'
+            'id' => 1,
+            'name' => 'demouser',
+            'email' => 'demo@test.com',
+            'email_verified_at' => '2022-01-01 00:00:00',
+            'password' => '$2y$10$KmzbVFBjuKE2M9xrp7yBv.J6oZTw94mxoECOGDHhuRnCKBacz0/Um',
+            'created_at' => '2022-01-01 00:00:00'
         ];
         DB::table('users')->insert($param);
-        $param = [
-            'name' => 'テスト次郎',
-            'email' => 'jiro@test.com',
-            'password' => '00000000'
-        ];
-        DB::table('users')->insert($param);
-        $param = [
-            'name' => 'テスト三郎',
-            'email' => 'saburo@test.com',
-            'password' => '00000000'
-        ];
-        DB::table('users')->insert($param);
-        $param = [
-            'name' => 'テスト四郎',
-            'email' => 'shiro@test.com',
-            'password' => '00000000'
-        ];
-        DB::table('users')->insert($param);
-        $param = [
-            'name' => 'テスト五郎',
-            'email' => 'goro@test.com',
-            'password' => '00000000'
-        ];
-        DB::table('users')->insert($param);
-//        users::insert($param);
     }
 }

@@ -29,7 +29,9 @@
                 <tr class="flex justify-center border-t border-gray-400">
                     <td class="w-32 md:w-10">
                         <p class="p-1 pl-3 md:p-3">{{$user->id}}</p>
-                        <p class="p-1 text-blue-500 hover:text-blue-700 md:hidden">{{$user->name}}</p>
+                        <a href="/users/{{$user->id}}">
+                            <p class="p-1 text-blue-500 hover:text-blue-700 md:hidden">{{$user->name}}</p>
+                        </a>
                     </td>
                     <td class="hidden md:flex w-40">
                         <a href="/users/{{$user->id}}">
