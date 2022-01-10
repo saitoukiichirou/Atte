@@ -5,7 +5,7 @@ namespace App\Libraries;
 use App\Models\Rest;
 use App\Models\User;
 
-class common
+class Common
 {
     //任意の条件で抽出されたレコードを加工・計算して返す
     public static function workTimeCalculation($attendances_array)
