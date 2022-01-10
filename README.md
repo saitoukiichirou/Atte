@@ -9,6 +9,7 @@
 
 # Requirement
 
+* PHP v7.4.16
 * MySQL v5.7.32
 * Laravel v8.78.1
 
