@@ -27,9 +27,9 @@
 
 * サンプルアカウント
 
-  email : laravel.test.3110@gmail.com
+  email : demo@test.com
 
-  password : 12345678
+  password : 11112222
 
 
 
